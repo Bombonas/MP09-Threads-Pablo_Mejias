@@ -28,14 +28,6 @@ public class Main extends Application {
         UtilsViews.addView(getClass(), "Mobile0", "/assets/layout_mobile_0.fxml");
 
         Scene scene = new Scene(UtilsViews.parentContainer);
-        
-        // Listen to window width changes
-        scene.widthProperty().addListener((ChangeListener<? super Number>) new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldWidth, Number newWidth) {
-                _setLayout(newWidth.intValue());
-            }
-        });
 
         stage.setScene(scene);
         stage.setTitle("JavaFX App");
@@ -43,6 +35,7 @@ public class Main extends Application {
         stage.setWidth(windowWidth);
         stage.setMinHeight(minHeight);
         stage.setHeight(windowHeight);
+        stage.setResizable(false);
         stage.show();
 
         // Add icon only if not Mac
@@ -50,13 +43,5 @@ public class Main extends Application {
             Image icon = new Image("file:/icons/icon.png");
             stage.getIcons().add(icon);
         }
-    }
-
-    private void _setLayout(int width) {
-        if (width < 600) {
-            UtilsViews.setView("Mobile0");
-        } else {
-            UtilsViews.setView("Desktop");
-        }
-    }
+    } 
 }
