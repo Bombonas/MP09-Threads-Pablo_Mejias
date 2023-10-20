@@ -26,7 +26,7 @@
                               <Font name="Lucida Console" size="18.0" />
                            </font>
                         </Label>
-                        <Region prefHeight="200.0" prefWidth="310.0" />
+                        <Region prefHeight="200.0" prefWidth="300.0" />
                         <Label fx:id="vista1Label" text="View 1 &gt;" textFill="#f6eddb">
                            <font>
                               <Font name="Lucida Console" size="13.0" />

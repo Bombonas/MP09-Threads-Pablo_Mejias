@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,7 +37,7 @@ public class ControllerDesktop implements Initializable{
     private ProgressBar bar1, bar2, bar3;
 
     @FXML
-    public Label task1, task2, task3;
+    public Label task1, task2, task3, vista1Label;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -47,6 +48,7 @@ public class ControllerDesktop implements Initializable{
         button1.setStyle("-fx-background-color: #bd4b64;");
         button2.setStyle("-fx-background-color: #bd4b64;");
         button3.setStyle("-fx-background-color: #bd4b64;");
+        
         rand = new Random();
 
         // ProgressBar 1
@@ -201,6 +203,14 @@ public class ControllerDesktop implements Initializable{
                     button3.setText("Iniciar");
                 }
             }
+        });
+
+        vista1Label.setOnMouseClicked(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                UtilsViews.setViewAnimating("Desktop2");
+            }
+            
         });
     }
 
