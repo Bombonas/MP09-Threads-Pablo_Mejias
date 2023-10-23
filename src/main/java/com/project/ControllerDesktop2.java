@@ -13,7 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
+
 
 public class ControllerDesktop2 implements Initializable{
 
@@ -43,9 +46,27 @@ public class ControllerDesktop2 implements Initializable{
 
         for(int i = 0; i<3; ++i){
             for(int j = 0; j<8; ++j){
+                final int rowIndex = j;
+                final int colIndex = i;
                 imageLoader.load((BufferedImage img) -> {
-                    ImageView imageView = new ImageView(SwingFXUtils.toFXImage(img, null));
-                    grid.add(imageView, i, j);
+                    int Width = 75; 
+                    int Height = 75;
+                    
+                    WritableImage fxImage = new WritableImage(Width, Height);
+                    PixelWriter writer = fxImage.getPixelWriter();
+                    for (int x = 0; x < Width; x++) {
+                        for (int y = 0; y < Height; y++) {
+                            int srcX = x * img.getWidth() / Width;
+                            int srcY = y * img.getHeight() / Height;
+                            int argb = img.getRGB(srcX, srcY);
+                            writer.setArgb(x, y, argb);
+                        }
+                    }
+                
+                    ImageView imageView = new ImageView(fxImage);
+                    imageView.setFitWidth(Width);
+                    imageView.setFitHeight(Height);
+                    grid.add(new ImageView(fxImage), rowIndex, colIndex);
                 });
             }
         }

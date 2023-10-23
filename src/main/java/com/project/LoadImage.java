@@ -22,12 +22,14 @@ public class LoadImage {
     public void load(Consumer<BufferedImage> callBack){
         CompletableFuture.supplyAsync(() -> {
             try {
-                rand = new Random();
-                Thread.sleep(rand.nextInt(45)+5);
 
-                File file = new File("/assets/images/si.jpg");
-                
+                rand = new Random();
+                Thread.sleep((rand.nextInt(45)+5)*1000);
+
+                File file = new File("src/main/resources/assets/images/si.jpg");
+
                 BufferedImage img = ImageIO.read(file);
+
 
                 return img;
             } catch (InterruptedException | IOException e) {
